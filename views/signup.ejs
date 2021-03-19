@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up</title>
+  <!-- custom css -->
+  <link rel="stylesheet" href="css/signup.css">
+  <!-- social buttons -->
+  <link rel="stylesheet" href="/css/bootstrap-social.css">
+  <!-- Google Fonts (fonts)-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <!-- bootstrap js -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+    integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+    crossorigin="anonymous"></script>
+</head>
+
+<body id="body-part">
+  <!-- header -->
+  <div id="header">
+    <nav class="navbar navbar-expand-lg navbar-dark" id="my-nav">
+      <!-- logo -->
+      <img src="images/app-logo.png" alt="app-logo" id="app-logo">
+      <!-- togger -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- links -->
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto">
+          <!-- home -->
+          <li class="nav-item">
+            <a class="nav-link" href="/" id="nav-links">Home</a>
+          </li>
+          <!-- signin -->
+          <li class="nav-item">
+            <a class="nav-link" href="/signin" id="nav-links">Sign in</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!-- forms -->
+  <div class="container" id="login-form">
+    <h1>Open your heart and share whatever you want!</h1>
+    <div class="row">
+
+      <!-- normal signup left  -->
+      <div class="col-lg-6" id="signin-left">
+        <!-- form-title -->
+        <div id="form-title">
+          <h2>Let's go! </h2>
+        </div>
+        <!-- form -->
+        <form action="/signup" method="POST">
+          <div class="form-group">
+            <label for="account">User name</label>
+            <input type="text" class="form-control" name="account" placeholder="Enter user name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" name="username" aria-describedby="emailHelp"
+              placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Enter password">
+          </div>
+          <button type="submit" class="btn btn-dark btn-block">Play with secrets</button>
+        </form>
+      </div>
+
+      <!-- social signup right -->
+
+      <div class="col-lg-6" id=signin-right>
+        <!-- form-title -->
+        <div id="form-title">
+          <h2>or sign up with SSO</h2>
+        </div>
+        <!-- social form -->
+        <div id="social-form">
+          <div class="card border-white">
+            <!-- google -->
+            <div class="card-body">
+              <a class="btn btn-block btn-lg btn-primary btn-social btn-google" href="/auth/google" role="button">
+                <i class="fab fa-google"></i>
+                Sign Up with Google
+              </a>
+            </div>
+            <!-- facebook -->
+            <div class="card-body">
+              <a class="btn btn-block btn-lg btn-success btn-social btn-facebook" href="/auth/facebook" role="button">
+                <i class="fab fa-facebook"></i>
+                Sign Up with Facebook
+              </a>
+            </div>
+            <!-- twitter -->
+            <div class="card-body">
+              <a class="btn btn-block btn-lg btn-info btn-social btn-twitter" href="/auth/twitter" role="button">
+                <i class="fab fa-twitter"></i>
+                Sign Up with Twitter
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <!-- Footer -->
+
+  <footer id="footer">
+    <div class="container-fluid" id="footer-padding">
+      <i class="social-icon fab fa-facebook-f fa-1x"></i>
+      <i class="social-icon fab fa-twitter"></i>
+      <i class="social-icon fab fa-instagram"></i>
+      <i class="social-icon fab fa-linkedin"></i>
+      <i class="social-icon fas fa-envelope"></i>
+      <p>© Copyright 2021 Secrets by James Wu</p>
+    </div>
+  </footer>
+</body>
+
+</html>

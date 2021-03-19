@@ -1,0 +1,114 @@
+Level 6 OAuth
+
+login with Google
+
+1. go to website to find strategy
+http://www.passportjs.org/packages/
+
+2. find passport-google-oauth20
+http://www.passportjs.org/packages/passport-google-oauth20/
+
+3. install this package
+npm install passport-google-oauth20
+
+Step 1 : Create an Application
+
+4. Create an Application on Google Developers Console
+Create an Application
+Before using passport-google-oauth20, you must register an application with Google. If you have not already done so, a new project can be created in the Google Developers Console. Your application will be issued a client ID and client secret, which need to be provided to the strategy. You will also need to configure a redirect URI which matches the route in your application.
+
+5. create newSecrets project on Google Developers Console
+
+6. set credentials for Google OAuth
+
+7. Edit app registration
+
+8. You can go to the API Library to find the scope you want to added to this app, then you can get the users special information of their Google account
+
+9. Here we only need the email, profile and openid three information to verify our login
+
+10. get app client id and client secret
+client id : 811750825057-noo1kbnr14so66i9e4q3msngi246mfkl.apps.googleusercontent.com
+client secret : G802ViAPytCycZBCb1t79uPy
+
+11. Open .env and add the following
+GOOGLE_CLIENT_ID=811750825057-noo1kbnr14so66i9e4q3msngi246mfkl.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=G802ViAPytCycZBCb1t79uPy
+
+12. Now we can go back to set google strategy using passport now 
+
+step 2 : Configure Strategy
+
+13. require package
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+14. set google strategy
+// google strategy
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "http://localhost:3000/auth/google/secrets",
+
+},
+  function (accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
+15. in order to make the above User.findOrCreate to work we need to install a package
+npm install mongoose-findorcreate
+
+16. require it
+const findOrCreate = require('mongoose-findorcreate')
+// findOrCreate
+userSchema.plugin(findOrCreate);
+
+17. add codes on the views front-end templates (login and register)
+    <div class="col-sm-4">
+      <div class="card social-block">
+        <div class="card-body">
+          <a class="btn btn-block" href="/auth/google" role="button">
+            <i class="fab fa-google"></i>
+            Sign Up with Google
+          </a>
+        </div>
+      </div>
+    </div>
+
+18. add route
+// google path
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] })
+);
+app.get('/auth/google/secrets',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function (req, res) {
+    // Successful authentication, redirect to secrets page.
+    res.redirect('/secrets');
+  }
+);
+
+19. replace code serilize and deserilize part 
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+20. now we can successfully authenticate with all other strategies
+
+21. add an attributes in the userSchema 
+// userSchema
+const userSchema = new mongoose.Schema({
+  email: String,
+  password: String,
+  googleId: String
+});
+
+22. Social Buttons for Bootstrap
+https://lipis.github.io/bootstrap-social/
